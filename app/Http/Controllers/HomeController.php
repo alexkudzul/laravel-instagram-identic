@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // Middleware auth => solo permite a users autenticado
         $this->middleware('auth');
     }
 
