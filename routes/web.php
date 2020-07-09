@@ -23,3 +23,6 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('configuration', 'UsersController@edit')->name('users.edit');
+Route::put('update/{user}', 'UsersController@update')->name('users.update');
+// Route::resource('users', 'UsersController');

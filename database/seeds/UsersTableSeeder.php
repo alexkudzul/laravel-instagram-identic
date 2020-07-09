@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // Storage busca el disco public(configuracion de filesystems) y elimina el directorio users
-        Storage::disk('users')->deleteDirectory('users');
+        // Storage busca el disco public(configuracion de filesystems) y elimina el directorio avatars
+        Storage::disk('public')->deleteDirectory('avatars');
 
         //limpia la tabla de la DB, si solo se ejecuta "php artisan db:seed", caso contrario se duplica cada insert
         User::truncate();
@@ -25,7 +25,8 @@ class UsersTableSeeder extends Seeder
         $user->lastname = "Ku Dzul";
         $user->nickname = "aleks";
         $user->email = "alex@alex.com";
-        $user->password = bcrypt(123);
+        // $user->password = bcrypt(123); //antes de agregar el mutador en el modelo User
+        $user->password = 12345678;
         $user->save();
 
         $user = new User();
@@ -34,7 +35,8 @@ class UsersTableSeeder extends Seeder
         $user->lastname = "Ku Dzul";
         $user->nickname = "manuels";
         $user->email = "manuel@manuel.com";
-        $user->password = bcrypt(123);
+        // $user->password = bcrypt(123); //antes de agregar el mutador en el modelo User
+        $user->password = 12345678;
         $user->save();
     }
 }

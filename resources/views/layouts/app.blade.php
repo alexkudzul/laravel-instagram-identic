@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css')}}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -53,10 +54,15 @@
                         @else
                             {{-- Ya autenticados --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Inicio</a>
+                            <a class="nav-link" href="{{route('home')}}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Subir ímagen</a>
+                                <a class="nav-link" href="#">Upload image</a>
+                            </li>
+                            <li>
+                                <div class="container-avatar">
+                                    <img src="{{Storage::url(auth()->user()->avatar)}}" class="avatar">
+                                </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -65,11 +71,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">
-                                        Mi perfil
+                                        Profile
                                     </a>
 
-                                    <a class="dropdown-item" href="#">
-                                        Configuración
+                                    <a class="dropdown-item" href="{{ route('users.edit')}}">
+                                        Configuration
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

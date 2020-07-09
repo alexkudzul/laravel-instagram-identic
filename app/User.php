@@ -42,4 +42,11 @@ class User extends Authenticatable
     public function images(){
         return $this->hasMany(Image::class);
     }
+
+    // Mutador, recibe el pass y lo encripta
+    /* Nota: desactivar el hash que se encuentra en Auth\RegisterController.php
+        para que no haga doble encriptacion al registrar un user*/
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

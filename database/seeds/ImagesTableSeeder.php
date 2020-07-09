@@ -14,7 +14,7 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         // Storage busca el disco public(configuracion de filesystems) y elimina el directorio images
-        Storage::disk('images')->deleteDirectory('images');
+        Storage::disk('public')->deleteDirectory('images');
 
         //limpia la tabla de la DB, si solo se ejecuta "php artisan db:seed", caso contrario se duplica cada insert
         Image::truncate();

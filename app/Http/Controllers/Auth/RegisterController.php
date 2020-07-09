@@ -72,7 +72,8 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'nickname' => $data['nickname'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password'],//se implemento un mutador en el model User a password con un bcrypt
+            // 'password' => Hash::make($data['password']), // defalut laravel 6
         ]);
     }
 }
