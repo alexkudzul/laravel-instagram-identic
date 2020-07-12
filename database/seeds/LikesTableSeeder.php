@@ -17,7 +17,7 @@ class LikesTableSeeder extends Seeder
 
         $like = new Like();
         $like->user_id = 1;
-        $like->image_id = 1;
+        $like->image_id = 4;
         $like->save();
 
         $like = new Like();

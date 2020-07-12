@@ -4,7 +4,7 @@ form .avatar{
 }
 
 .navbar .container-avatar,
-.pub_image .container-avatar{
+.publication_image .container-avatar{
     width: 35px;
     height: 35px;
     border-radius: 900px;
@@ -13,32 +13,36 @@ form .avatar{
 }
 
 .navbar .container-avatar img,
-.pub_image .container-avatar img{
+.publication_image .container-avatar img{
     height: 100%;
 }
 
-.pub_image{
+.publication_image{
     margin-bottom: 25px;
 }
 
-.pub_image .container-avatar{
+.publication_image .container-avatar{
     float:left;
      margin-right:15px;
 }
-.pub_image .data-user{
+.publication_image .data-user{
     font-weight: bold;
     line-height: 35px;
 }
 
-.pub_image .data-user a{
+.publication_image .data-user a{
     color: #444;
 }
 
-.pub_image .nickname{
+.publication_image .nickname{
     color:gray;
 }
 
-.image-container{
+.date{
+    color:gray;
+}
+
+.container-image{
     width: 100%;
     max-height: 400px;
     overflow: hidden;
@@ -48,20 +52,20 @@ form .avatar{
     max-height: 500px;
 }
 
-.image-container img{
+.container-image img{
     width: 100%;
 }
 
-.pub_image .card-body{
+.publication_image .card-body{
     padding:0px;
 }
 
-.pub_image .description{
+.publication_image .description{
     padding: 20px;
     padding-bottom: 0px;
 }
 
-.pub_image .btn-comments{
+.publication_image .btn-comments{
     margin: 20px;
     margin-top:0px;
     margin-left:0px;
@@ -77,7 +81,7 @@ form .avatar{
     width: 20px;
 }
 
-.pub_image_detail .comments {
+.publication_image_detail .comments {
     padding: 20px;
 }
 

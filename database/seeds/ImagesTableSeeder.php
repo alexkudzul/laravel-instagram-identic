@@ -20,26 +20,26 @@ class ImagesTableSeeder extends Seeder
         Image::truncate();
 
         $image = new Image();
-        $image->image_path = "image1.jpg";
-        $image->description = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+        $image->image_path = "images/image1.jpg";
+        $image->description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum vitae vel sequi eveniet ad quod quia id dolorem quasi laudantium voluptatum asperiores, veniam deserunt iusto placeat tenetur deleniti explicabo.";
         $image->user_id = 1;
         $image->save();
 
         $image = new Image();
-        $image->image_path = "image2.jpg";
-        $image->description = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+        $image->image_path = "images/image2.jpg";
+        $image->description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum vitae vel sequi eveniet ad quod quia id dolorem quasi laudantium voluptatum asperiores, veniam deserunt iusto placeat tenetur deleniti explicabo.";
         $image->user_id = 2;
         $image->save();
 
         $image = new Image();
-        $image->image_path = "image3.jpg";
-        $image->description = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+        $image->image_path = "images/image3.jpg";
+        $image->description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum vitae vel sequi eveniet ad quod quia id dolorem quasi laudantium voluptatum asperiores, veniam deserunt iusto placeat tenetur deleniti explicabo.";
         $image->user_id = 1;
         $image->save();
 
         $image = new Image();
-        $image->image_path = "image4.jpg";
-        $image->description = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+        $image->image_path = "images/image4.jpg";
+        $image->description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum vitae vel sequi eveniet ad quod quia id dolorem quasi laudantium voluptatum asperiores, veniam deserunt iusto placeat tenetur deleniti explicabo.";
         $image->user_id = 2;
         $image->save();
     }

@@ -19,25 +19,25 @@ class CommentsTableSeeder extends Seeder
         $comment = new Comment();
         $comment->content = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
         $comment->user_id = 1;
-        $comment->image_id=1;
+        $comment->image_id= 1;
         $comment->save();
 
         $comment = new Comment();
         $comment->content = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
         $comment->user_id = 1;
-        $comment->image_id=2;
+        $comment->image_id= 2;
         $comment->save();
 
         $comment = new Comment();
         $comment->content = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
         $comment->user_id = 2;
-        $comment->image_id=1;
+        $comment->image_id= 3;
         $comment->save();
 
         $comment = new Comment();
         $comment->content = "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
         $comment->user_id = 2;
-        $comment->image_id=2;
+        $comment->image_id= 4;
         $comment->save();
     }
 }
