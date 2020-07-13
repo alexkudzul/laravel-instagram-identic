@@ -39,3 +39,8 @@ Route::get('comments/edit/{id}', 'CommentsController@edit')->name('comments.edit
 Route::put('comments/update/{id}', 'CommentsController@update')->name('comments.update');
 Route::delete('comments/{id}', 'CommentsController@destroy')->name('comments.destroy');
 // Route::resource('comments', 'CommentsController');
+
+// LIKES
+Route::get('likes/favorites', 'LikesController@index')->name('likes.index');
+Route::get('like/{id}', 'LikesController@like')->name('likes.like');
+Route::get('unlike/{id}', 'LikesController@unlike')->name('likes.unlike');

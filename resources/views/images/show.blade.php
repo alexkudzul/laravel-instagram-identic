@@ -5,11 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            {{-- Si la session tiene un mensaje con la llave flash--}}
-            @if (session()->has('flash'))
-                {{-- flash declararada en el controlador --}}
-                <div class="alert alert-success">{{session('flash')}}</div>
-            @endif
+            {{-- Message success --}}
+            @include('partials.message_success')
 
                 <div class="card publication_image publication_image_detail">
                     <div class="card-header">
@@ -41,7 +38,24 @@
                             <p>{{$image->description}}</p>
                         </div>
                         <div class="likes">
-                            <img src="{{asset('img/heart-black.png')}}">
+
+                            {{-- Comprobar si el user le dio like a la image --}}
+                            <?php $user_like = false; ?>
+
+                            @foreach ($image->likes as $like)
+                                @if ($like->user->id == Auth::user()->id)
+                                    <?php $user_like = true; ?>
+                                @endif
+                            @endforeach
+
+                            @if ($user_like)
+                                {{-- https://www.iconsdb.com/black-icons/hearts-icon.html --}}
+                                <img src="{{asset('/img/heart-red.png')}}" data-id="{{$image->id}}" class="btn-unlike">
+                            @else
+                                {{-- https://www.iconsdb.com/black-icons/hearts-icon.html --}}
+                                <img src="{{asset('/img/heart-black.png')}}" data-id="{{$image->id}}" class="btn-like">
+                            @endif
+
                             <span class="number_likes">{{count($image->likes)}}</span>
                         </div>
                         <div class="clearfix"></div>
