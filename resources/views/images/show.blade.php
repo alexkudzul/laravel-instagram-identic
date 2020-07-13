@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            {{-- si la session tiene un mensaje con la llave flash y si tiene--}}
+            {{-- Si la session tiene un mensaje con la llave flash--}}
             @if (session()->has('flash'))
-                {{-- se visualiza el mensaje del flahs declara en el controlador --}}
+                {{-- flash declararada en el controlador --}}
                 <div class="alert alert-success">{{session('flash')}}</div>
             @endif
 
@@ -48,7 +48,62 @@
                         <div class="comments">
                             <h2>Comments ({{count($image->comments)}})</h2>
                             <hr>
+                            <form action="{{route('comments.store')}}" method="POST">
+                                @csrf
 
+                                <input type="hidden" name="image_id" value="{{$image->id}}" />
+                                <p>
+                                    <textarea class="form-control @error('content') is-invalid @enderror" name="content"> </textarea>
+
+                                    @error('content')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </p>
+                                <button type="submit" class="btn btn-success">
+                                    Send
+                                </button>
+                            </form>
+                            <hr>
+                            @foreach ($image->comments as $comment)
+                                <div class="comment">
+                                    <span class="nickname">{{'@'.$comment->user->nickname}} </span>
+                                    {{-- optional() verifica si el valor es nullo, y que no nos muestre de que el formato no existe--}}
+                                    <span class="date">{{' | '. optional($comment->created_at)->diffForHumans()}}</span>
+
+                                    <p>{{$comment->content}} <br>
+                                        {{-- Si esta autenticado y (Comprobar si es dueño del comentario o de la publicacion de la imagen) --}}
+                                        @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+
+                                            <form action="{{route('comments.destroy', $comment->id)}}" method="POST" style="display:inline">
+                                                {{-- laravel simula el method DELETE --}}
+                                                @csrf {{method_field('DELETE')}}
+
+                                                <button class="btn btn-sm btn-danger">
+                                                    Delete
+                                                </button>
+                                            </form>
+
+                                            <a href="{{route('comments.edit', $comment->id)}}" class="btn btn-sm btn-warning" >
+                                                Edit
+                                            </a>
+
+                                        @endif
+
+                                        {{-- Si esta autenticado y (Comprobar si es dueño del comentario o de la publicacion de la imagen) --}}
+                                        {{-- @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                            <a href="{{ route('comment.delete', $comment->id) }}" class="btn btn-sm btn-danger">
+                                                Eliminar
+                                            </a>
+
+                                            <a href="{{route('comments.edit', $comment->id)}}" class="btn btn-sm btn-warning">
+                                                Edit
+                                            </a>
+                                        @endif --}}
+                                    </p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

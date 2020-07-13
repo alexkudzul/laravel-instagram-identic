@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            {{-- si la session tiene un mensaje con la llave flash y si tiene--}}
+            {{-- Si la session tiene un mensaje con la llave flash--}}
             @if (session()->has('flash'))
-                {{-- se visualiza el mensaje del flahs declara en el controlador --}}
+                {{-- flash declarada en el controlador --}}
                 <div class="alert alert-success">{{session('flash')}}</div>
             @endif
 
