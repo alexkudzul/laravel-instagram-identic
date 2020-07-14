@@ -5,11 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            {{-- si la session tiene un mensaje con la llave flash y si tiene--}}
-            @if (session()->has('flash'))
-                {{-- se visualiza el mensaje del flahs declara en el controlador --}}
-                <div class="alert alert-success">{{session('flash')}}</div>
-            @endif
+            {{-- Message success --}}
+            @include('partials.message_success')
 
             @foreach ($images as $image)
                 {{-- Se le pasa la variable image a la vista --}}

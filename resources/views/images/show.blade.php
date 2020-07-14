@@ -14,10 +14,12 @@
                             <img src="{{Storage::url(auth()->user()->avatar)}}" class="avatar">
                         </div>
                         <div class="data-user">
+                            <a href="{{route('users.show', $image->user->id)}}">
                                 {{$image->user->name.' '.$image->user->lastname}}
                                 <span class="nickname">
                                     {{' | @'.$image->user->nickname}}
                                 </span>
+                            </a>
                         </div>
                     </div>
 

@@ -9,7 +9,7 @@
             @include('partials.message_success')
 
             <div class="card">
-                <div class="card-header">{{ __('Configuration') }}</div>
+                <div class="card-header">{{ __('Settings') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.update', Auth::user())}}" enctype="multipart/form-data">

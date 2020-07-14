@@ -74,12 +74,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">
-                                        Profile
+                                    <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id)}}">
+                                        See your profile
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('users.edit')}}">
-                                        Configuration
+                                        Settings
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

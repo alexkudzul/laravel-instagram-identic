@@ -4,7 +4,7 @@
             <img src="{{Storage::url(auth()->user()->avatar)}}" class="avatar">
         </div>
         <div class="data-user">
-            <a href="{{route('images.show', $image->id)}}">
+            <a href="{{route('users.show', $image->user->id)}}">
                 {{$image->user->name.' '.$image->user->lastname}}
                 <span class="nickname">
                     {{' | @'.$image->user->nickname}}
@@ -54,7 +54,7 @@
         </div>
 
         <div class="comments">
-            <a href="#" class="btn btn-sm btn-comments">
+            <a href="{{route('images.show', $image->id)}}" class="btn btn-sm btn-comments">
                 Comments ({{count($image->comments)}})
             </a>
         </div>

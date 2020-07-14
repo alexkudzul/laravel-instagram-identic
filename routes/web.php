@@ -25,8 +25,9 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // USUARIOS
-Route::get('configuration', 'UsersController@edit')->name('users.edit');
+Route::get('settings', 'UsersController@edit')->name('users.edit');
 Route::put('update/{user}', 'UsersController@update')->name('users.update');
+Route::get('profile/{user}', 'UsersController@show')->name('users.show');
 
 // IMAGES
 Route::get('upload-image', 'ImagesController@create')->name('images.create');
