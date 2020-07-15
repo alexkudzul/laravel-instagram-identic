@@ -25,14 +25,18 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // USUARIOS
-Route::get('settings', 'UsersController@edit')->name('users.edit');
-Route::put('update/{user}', 'UsersController@update')->name('users.update');
-Route::get('profile/{user}', 'UsersController@show')->name('users.show');
+Route::get('users/settings', 'UsersController@edit')->name('users.edit');
+Route::put('users/update/{user}', 'UsersController@update')->name('users.update');
+Route::get('users/profile/{user}', 'UsersController@show')->name('users.show');
 
 // IMAGES
-Route::get('upload-image', 'ImagesController@create')->name('images.create');
-Route::post('store', 'ImagesController@store')->name('images.store');
-Route::get('image/{id}', 'ImagesController@show')->name('images.show');
+Route::get('images/upload', 'ImagesController@create')->name('images.create');
+Route::post('images/store', 'ImagesController@store')->name('images.store');
+Route::get('images/{id}', 'ImagesController@show')->name('images.show');
+Route::get('images/edit/{id}', 'ImagesController@edit')->name('images.edit');
+Route::put('images/update/{id}', 'ImagesController@update')->name('images.update');
+Route::delete('images/delete/{id}', 'ImagesController@destroy')->name('images.destroy');
+// Route::resource('images', 'ImagesController');
 
 // COMMENTS
 Route::post('comments', 'CommentsController@store')->name('comments.store');

@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            {{-- Message error --}}
+            @include('partials.message_error')
 
                 <div class="card publication_image publication_image_detail">
                     <div class="card-header">

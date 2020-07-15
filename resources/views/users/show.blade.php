@@ -19,10 +19,14 @@
                     {{-- optional() verifica si el valor es nullo, y que no nos muestre el error, que el formato no existe--}}
                     <p>{{'Joined in: '. optional($user->created_at)->formatLocalized('%B %Y')}}</p>
                     {{-- <p>{{'Joined in: '. optional($user->created_at)->diffForHumans()}}</p> --}}
-				</div>
+                </div>
+                {{-- clearfix clase de bootstrap, limpia flotados --}}
+                <div class="clearfix"></div>
+                <hr>
             </div>
 
-            <hr>
+            {{-- <hr> --}}
+            <div class="clearfix"></div>
 
             {{-- Recorre las images que tiene el user --}}
             @foreach ($user->images as $image)

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +52,7 @@ class CommentsController extends Controller
         $comments->save();
 
         return redirect()->route('images.show', ['id' => $comments->image_id])
-                            ->with('flash', 'Comments public successfully ');
+            ->with('flash', 'Comment public successfully ');
     }
 
     /**
@@ -70,8 +74,15 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
         $comment = Comment::find($id);
-        return view('comments.edit', compact('comment'));
+
+        if ($comment->user->id == $user->id) {
+            return view('comments.edit', compact('comment'));
+        } else {
+            // return redirect()->route('home');
+            return back()->with('flash', 'Can not edit comment ');
+        }
     }
 
     /**
@@ -92,7 +103,7 @@ class CommentsController extends Controller
         $comment->update();
 
         return redirect()->route('images.show', ['id' => $comment->image->id])
-                            ->with('flash', 'Comment update successfully ');
+            ->with('flash', 'Comment update successfully ');
     }
 
     /**
@@ -107,15 +118,15 @@ class CommentsController extends Controller
         $userAuth = Auth::user();
 
         // Si esta autenticado y (Comprobar si es dueño del comentario o de la publicacion de la imagen)
-        if($userAuth && ( $comment->user_id == $userAuth->id || $comment->image->user_id == $userAuth->id)){
+        if ($userAuth && ($comment->user_id == $userAuth->id || $comment->image->user_id == $userAuth->id)) {
             $comment->delete();
 
             return redirect()->route('images.show', ['id' => $comment->image->id])
-                            ->with('flash', 'Comment delete successfully ');
-        }else{
+                ->with('flash', 'Comment delete successfully ');
+        } else {
 
             return redirect()->route('images.show', ['id' => $comment->image->id])
-                            ->with('flash', 'Comment not delete ');
+                ->with('flash', 'Comment not delete ');
         }
     }
 }

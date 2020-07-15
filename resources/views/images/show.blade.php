@@ -60,6 +60,51 @@
 
                             <span class="number_likes">{{count($image->likes)}}</span>
                         </div>
+
+                        @if(Auth::user() && Auth::user()->id == $image->user->id)
+                            <div class="actions">
+                                <a href="{{ route('images.edit', $image->id) }}" class="btn btn-sm btn-primary">Edit image</a>
+
+                                <!-- Button to Open the Modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">
+                                    Delete image
+                                </button>
+
+                                <!-- The Modal -->
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Are you sure?</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                You will not be able to recover the image, are you sure you want to delete it?
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cancel</button>
+                                                {{-- <a href="{{ route('images.destroy', $image->id) }}" class="btn btn-danger">Delete image</a> --}}
+                                                <form action="{{route('images.destroy', $image->id)}}" method="POST">
+                                                    {{-- laravel simula el method DELETE --}}
+                                                    @csrf {{method_field('DELETE')}}
+
+                                                    <button class="btn btn-sm btn-danger">
+                                                        Delete image
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div class="clearfix"></div>
                         <div class="comments">
                             <h2>Comments ({{count($image->comments)}})</h2>
@@ -78,7 +123,7 @@
                                     @enderror
                                 </p>
                                 <button type="submit" class="btn btn-success">
-                                    Send
+                                    Send comment
                                 </button>
                             </form>
                             <hr>
@@ -91,20 +136,51 @@
                                     <p>{{$comment->content}} <br>
                                         {{-- Si esta autenticado y (Comprobar si es dueño del comentario o de la publicacion de la imagen) --}}
                                         @if (Auth::check() && ($comment->user_id == Auth::user()->id || $comment->image->user_id == Auth::user()->id))
+                                            <div class="actions">
 
-                                            <form action="{{route('comments.destroy', $comment->id)}}" method="POST" style="display:inline">
-                                                {{-- laravel simula el method DELETE --}}
-                                                @csrf {{method_field('DELETE')}}
+                                                <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-sm btn-primary">
+                                                    Edit comment
+                                                </a>
 
-                                                <button class="btn btn-sm btn-danger">
-                                                    Delete
+                                                <!-- Button to Open the Modal -->
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal2">
+                                                    Delete comment
                                                 </button>
-                                            </form>
 
-                                            <a href="{{route('comments.edit', $comment->id)}}" class="btn btn-sm btn-warning" >
-                                                Edit
-                                            </a>
+                                                <!-- The Modal -->
+                                                <div class="modal" id="myModal2">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
 
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Are you sure?</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+
+                                                            <!-- Modal body -->
+                                                            <div class="modal-body">
+                                                                You will not be able to recover the comment, are you sure you want to delete it?
+                                                            </div>
+
+                                                            <!-- Modal footer -->
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-sm btn-success" data-dismiss="modal">Cancel</button>
+
+                                                                <form action="{{route('comments.destroy', $comment->id)}}" method="POST" style="display:inline">
+                                                                    {{-- laravel simula el method DELETE --}}
+                                                                    @csrf {{method_field('DELETE')}}
+
+                                                                    <button class="btn btn-sm btn-danger">
+                                                                        Delete comment
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
 
                                         {{-- Si esta autenticado y (Comprobar si es dueño del comentario o de la publicacion de la imagen) --}}
