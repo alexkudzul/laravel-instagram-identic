@@ -41,8 +41,8 @@ Esta app puede:
 11. Ejecuta `php artisan db:seed`
 12. Ejecuta `npm install && npm run dev`, para compilar los estilos del frontend.
 13. Entra en el directorio `/public/img/` del proyecto y copia la carpeta `images` y la imagen `avatar_default`
-    *Pega los archivos seleccionado anteriormente, en la ruta `/storage/app/public`
-    *Ejecuta `php artisan storage:link`
+    * Pega los archivos seleccionado anteriormente, en la ruta `/storage/app/public`
+    * Ejecuta `php artisan storage:link`
 14. Abre la aplicación en el navegador.
 15. Accede a `/login` para ingresar en tu perfil.
     * Email: alex@alex.com
