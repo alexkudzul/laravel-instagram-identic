@@ -25,9 +25,11 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // USUARIOS
+Route::get('users/friends/{search?}', 'UsersController@index')->name('users.index');
 Route::get('users/settings', 'UsersController@edit')->name('users.edit');
 Route::put('users/update/{user}', 'UsersController@update')->name('users.update');
 Route::get('users/profile/{user}', 'UsersController@show')->name('users.show');
+// Route::get('users/friends/search/{search?}', 'UsersController@search')->name('users.search');
 
 // IMAGES
 Route::get('images/upload', 'ImagesController@create')->name('images.create');

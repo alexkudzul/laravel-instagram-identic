@@ -58,4 +58,10 @@ window.addEventListener('load', function(){
     }
 
     unlike();
+
+    // Search freinds
+	$('#searching').submit(function(e){
+        $(this).attr('action',url+'/users/friends/'+$('#searching #search').val());
+        // $(this).attr('action',url+'/users/friends/search/'+$('#searching #search').val());
+	});
 });

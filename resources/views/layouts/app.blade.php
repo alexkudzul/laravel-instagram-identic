@@ -58,6 +58,9 @@
                             <a class="nav-link" href="{{route('home')}}">Home</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index')}}">Friends</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes.index')}}">Favorites</a>
                             </li>
                             <li class="nav-item">

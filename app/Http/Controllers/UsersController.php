@@ -18,10 +18,43 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    //  $search => variable optional
+    public function index($search = null)
     {
-        //
+        // LIKE => Busqueda o igual
+        // % => Que coincida con la busqueda que se esta realizando
+        if (!empty($search)) {
+            $users = User::where('nickname', 'LIKE', '%' . $search . '%')
+                ->orWhere('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('lastname', 'LIKE', '%' . $search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate(5);
+        }else{
+			$users = User::orderBy('id', 'desc')->paginate(5);
+		}
+
+        return view('users.index', compact('users'));
+
+
+		/*$users = User::orderBy('id', 'desc')->paginate(5);
+        return view('users.index', compact('users'));*/
     }
+
+    /*public function search($search = null)
+    {
+        if (!empty($search)) {
+            $users = User::where('nickname', 'LIKE', '%' . $search . '%')
+                ->orWhere('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('lastname', 'LIKE', '%' . $search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate(5);
+        }else{
+			$users = User::orderBy('id', 'desc')->paginate(5);
+		}
+
+		return view('users.index', compact('users'));
+    } */
 
     /**
      * Show the form for creating a new resource.
@@ -98,16 +131,15 @@ class UsersController extends Controller
         if ($request->filled('password')) {
 
             $rules['password'] = ['required', 'string', 'min:8', 'confirmed'];
-
         }
 
         // Validar imagen
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
 
-            $this->validate($request, ['avatar' => 'image'],['avatar.image' => 'Foto de perfil debe ser una imagen']);
+            $this->validate($request, ['avatar' => 'image'], ['avatar.image' => 'Foto de perfil debe ser una imagen']);
             // $request->validate(['avatar' => 'image'],['avatar.image' => 'Foto de perfil debe ser una imagen']);
 
-            $user->avatar = $request->file('avatar')->store('avatars','public');// store->indica en que carpeta sera guardado
+            $user->avatar = $request->file('avatar')->store('avatars', 'public'); // store->indica en que carpeta sera guardado
         }
 
         // Devuelve los datos validados
